@@ -4,7 +4,7 @@ namespace BlazorApp.Data
 {
    public class Mordor
    {
-      public string id { get; set; }
+      public string _id { get; set; }
       public string itemName { get; set; }
       public string description { get; set; }
       public string category { get; set; }
