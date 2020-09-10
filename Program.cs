@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using BlazorApp.Data;
 
 namespace BlazorApp
 {
@@ -26,6 +27,7 @@ namespace BlazorApp
       public static void Main(string[] args)
       {
          CreateHostBuilder(args).Build().Run();
+         Trigger.Trig();
       }
 
       public static IHostBuilder CreateHostBuilder(string[] args) =>

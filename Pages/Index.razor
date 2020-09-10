@@ -1,11 +1,19 @@
 ﻿@page "/"
+@using BlazorApp.Data
+@inject Login Log
 
-<h1>Hello, world!</h1>
-<input type="text" value="@CurrentValue" @onchange="@((ChangeEventArgs e) => CurrentValue = e.Value.ToString())" />
-Welcome to your new app.
-<SurveyPrompt Title="How is Blazor working for you?" />
-<Counter IncreamentCount="10" />
+<h1>Login</h1>
+<input placeholder="Login" type="text" value="@CurrentValue" @onchange="@((ChangeEventArgs e) => CurrentValue = e.Value.ToString())" />
+<input placeholder="password" type="text" value="@Password" @onchange="@((ChangeEventArgs e) => Password = e.Value.ToString())" />
+<button>Submit</button>
 
 @code {
    private string CurrentValue { get; set; }   
+   private string Password { get; set; }
+
+   public void SetCred()
+   {
+      Login.username = CurrentValue;
+      Login.password = Password;
+   }
 }
