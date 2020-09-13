@@ -98,3 +98,5 @@
 /Users/abhiramnagadi/Documents/Blazor/obj/Debug/netcoreapp3.1/BlazorApp.dll
 /Users/abhiramnagadi/Documents/Blazor/obj/Debug/netcoreapp3.1/BlazorApp.pdb
 /Users/abhiramnagadi/Documents/Blazor/obj/Debug/netcoreapp3.1/BlazorApp.genruntimeconfig.cache
+/Users/abhiramnagadi/Documents/Blazor/obj/Debug/netcoreapp3.1/RazorDeclaration/Pages/Home.razor.g.cs
+/Users/abhiramnagadi/Documents/Blazor/obj/Debug/netcoreapp3.1/Razor/Pages/Home.razor.g.cs

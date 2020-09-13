@@ -1,5 +1,6 @@
 ﻿@page "/"
 @using Auth
+@inject NavigationManager Nav
 @inject LoginAuth LAuth
 
 <h1>Login</h1>
@@ -23,8 +24,9 @@ else
 
    public async void SetCred()
    {
-       Login.username = CurrentValue;
-       Login.password = Password;
-       LA = await LAuth.UserLogin();
+      Login.username = CurrentValue;
+      Login.password = Password;
+      LA = await LAuth.UserLogin(); 
+      Nav.NavigateTo($"/home/{LA._id}");
    }
 }

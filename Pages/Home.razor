@@ -1,0 +1,15 @@
+@* @layout Home *@
+@page "/home/{Id}"
+
+<h1>This is Home Page and the id is @Id</h1>
+
+@code
+{
+   [Parameter]
+   public string Id { get; set; }
+
+   protected override void OnParametersSet()
+   {
+      var x = Id;
+   }
+}

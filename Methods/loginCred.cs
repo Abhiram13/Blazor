@@ -1,9 +1,7 @@
 using System;
 using System.Net.Http;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Text;
-using System.Text.Json.Serialization;
 using Newtonsoft.Json;
 
 namespace Auth
@@ -35,7 +33,6 @@ namespace Auth
          HttpResponseMessage response = client.PostAsync("http://localhost:7000/login.js/", content).Result;
          string json = await response.Content.ReadAsStringAsync();         
          ResponseLogin res = JsonConvert.DeserializeObject<ResponseLogin>(json);
-         Console.WriteLine(res);
          return res;
       }
    }
