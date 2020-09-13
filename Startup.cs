@@ -29,7 +29,6 @@ namespace BlazorApp
          services.AddRazorPages();
          services.AddServerSideBlazor();
          services.AddSingleton<GetRequest>();
-         services.AddSingleton<Login>();
          services.AddSingleton<LoginAuth>();
       }
 

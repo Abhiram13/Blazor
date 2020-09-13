@@ -1,23 +1,30 @@
 ﻿@page "/"
 @using Auth
-@inject Login Log
 @inject LoginAuth LAuth
 
 <h1>Login</h1>
 <input placeholder="Login" type="text" value="@CurrentValue" @onchange="@((ChangeEventArgs e) => CurrentValue = e.Value.ToString())" />
 <input placeholder="password" type="text" value="@Password" @onchange="@((ChangeEventArgs e) => Password = e.Value.ToString())" />
 <button @onclick="SetCred">Submit</button>
-<h1>The Login username is @LA</h1>
+
+@if (LA == null)
+{
+   <h6>Loading....</h6>
+}
+else
+{
+   <h1>@LA.firstname</h1>
+}
 
 @code {
    private string CurrentValue { get; set; }
    private string Password { get; set; }
-   private Task<string> LA;
+   private ResponseLogin LA { get; set; }
 
-   public void SetCred()
+   public async void SetCred()
    {
        Login.username = CurrentValue;
        Login.password = Password;
-       LA = LAuth.UserLogin();
+       LA = await LAuth.UserLogin();
    }
 }

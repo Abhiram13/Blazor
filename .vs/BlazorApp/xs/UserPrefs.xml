@@ -1,0 +1,33 @@
+﻿<Properties GitUserInfo="UsingGIT" StartupConfiguration="{91C55C77-CFD3-47AE-8210-E3BE7148BDA9}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Startup.cs">
+    <Files>
+      <File FileName="Program.cs" Line="11" Column="12" />
+      <File FileName="Pages/Index.razor" Line="2" Column="12" />
+      <File FileName="Methods/loginCred.cs" Line="39" Column="1" />
+      <File FileName="Pages/FetchData.razor" Line="48" Column="29" />
+      <File FileName="Methods/ObjectFetch.cs" Line="11" Column="35" />
+      <File FileName="Methods/Object.cs" Line="5" Column="23" />
+      <File FileName="Startup.cs" Line="23" Column="50" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="BlazorApp" expanded="True">
+            <Node name="BlazorApp" expanded="True">
+              <Node name="Methods" expanded="True" />
+              <Node name="Pages" expanded="True" />
+              <Node name="Startup.cs" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.BlazorApp PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
