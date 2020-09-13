@@ -1,14 +1,14 @@
 using System;
 
-namespace BlazorApp.Data
+namespace Auth
 {
-   class Login
+   public class Login
    {
       public static string username { get; set; }
       public static string password { get; set; }
    }
 
-   class Trigger
+   public class Trigger
    {
       public static void Trig()
       {

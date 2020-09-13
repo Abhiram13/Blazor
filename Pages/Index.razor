@@ -1,19 +1,20 @@
 ﻿@page "/"
-@using BlazorApp.Data
+@using Auth
 @inject Login Log
 
 <h1>Login</h1>
 <input placeholder="Login" type="text" value="@CurrentValue" @onchange="@((ChangeEventArgs e) => CurrentValue = e.Value.ToString())" />
 <input placeholder="password" type="text" value="@Password" @onchange="@((ChangeEventArgs e) => Password = e.Value.ToString())" />
-<button>Submit</button>
+<button @onclick="SetCred">Submit</button>
+<h1>The Login username is @Login.username</h1>
 
 @code {
-   private string CurrentValue { get; set; }   
+   private string CurrentValue { get; set; }
    private string Password { get; set; }
 
    public void SetCred()
    {
-      Login.username = CurrentValue;
-      Login.password = Password;
+       Login.username = CurrentValue;
+       Login.password = Password;
    }
 }
