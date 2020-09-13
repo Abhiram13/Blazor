@@ -30,6 +30,7 @@ namespace BlazorApp
          services.AddServerSideBlazor();
          services.AddSingleton<GetRequest>();
          services.AddSingleton<Login>();
+         services.AddSingleton<LoginAuth>();
       }
 
       // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -27,7 +27,6 @@ namespace BlazorApp
       public static void Main(string[] args)
       {
          CreateHostBuilder(args).Build().Run();
-         Trigger.Trig();
       }
 
       public static IHostBuilder CreateHostBuilder(string[] args) =>
