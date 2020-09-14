@@ -2,26 +2,12 @@
   <MonoDevelop.Ide.Workbench ActiveDocument="Startup.cs">
     <Files>
       <File FileName="Program.cs" Line="11" Column="12" />
-      <File FileName="Pages/Index.razor" Line="2" Column="12" />
-      <File FileName="Methods/loginCred.cs" Line="39" Column="1" />
-      <File FileName="Pages/FetchData.razor" Line="48" Column="29" />
-      <File FileName="Methods/ObjectFetch.cs" Line="11" Column="35" />
-      <File FileName="Methods/Object.cs" Line="5" Column="23" />
-      <File FileName="Startup.cs" Line="23" Column="50" />
+      <File FileName="Methods/loginCred.cs" />
+      <File FileName="Pages/FetchData.razor" />
+      <File FileName="Methods/ObjectFetch.cs" />
+      <File FileName="Methods/Object.cs" />
+      <File FileName="Startup.cs" Line="44" Column="47" />
     </Files>
-    <Pads>
-      <Pad Id="ProjectPad">
-        <State name="__root__">
-          <Node name="BlazorApp" expanded="True">
-            <Node name="BlazorApp" expanded="True">
-              <Node name="Methods" expanded="True" />
-              <Node name="Pages" expanded="True" />
-              <Node name="Startup.cs" selected="True" />
-            </Node>
-          </Node>
-        </State>
-      </Pad>
-    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

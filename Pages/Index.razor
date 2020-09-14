@@ -3,10 +3,22 @@
 @inject NavigationManager Nav
 @inject LoginAuth LAuth
 
-<h1>Login</h1>
-<input placeholder="Login" type="text" value="@CurrentValue" @onchange="@((ChangeEventArgs e) => CurrentValue = e.Value.ToString())" />
-<input placeholder="password" type="text" value="@Password" @onchange="@((ChangeEventArgs e) => Password = e.Value.ToString())" />
-<button @onclick="SetCred">Submit</button>
+@if (ExistingUser)
+{
+   <h1>Login</h1>
+   <input placeholder="Login" type="text" value="@CurrentValue" @onchange="@((ChangeEventArgs e) => CurrentValue = e.Value.ToString())" />
+   <input placeholder="password" type="text" value="@Password" @onchange="@((ChangeEventArgs e) => Password = e.Value.ToString())" />
+   <button @onclick="SetCred">Submit</button>
+   <p>Don't have an Account? <span @onclick="updateUserExistence">Sign Up</span></p>   
+}
+else 
+{
+   <h1>Sign Up</h1>
+   <input placeholder="Login" type="text" value="@CurrentValue" @onchange="@((ChangeEventArgs e) => CurrentValue = e.Value.ToString())" />
+   <input placeholder="password" type="text" value="@Password" @onchange="@((ChangeEventArgs e) => Password = e.Value.ToString())" />
+   <button @onclick="SetCred">Submit</button>
+   <p>Have an Account? <span @onclick="updateUserExistence">Log In</span></p>
+}
 
 @if (LA == null)
 {
@@ -21,6 +33,17 @@ else
    private string CurrentValue { get; set; }
    private string Password { get; set; }
    private ResponseLogin LA { get; set; }
+   private bool ExistingUser { get; set; }
+
+   protected override void OnInitialized()
+   {
+      ExistingUser = true;
+   }
+
+   public void updateUserExistence()
+   {
+      ExistingUser = !ExistingUser;
+   }
 
    public async void SetCred()
    {
