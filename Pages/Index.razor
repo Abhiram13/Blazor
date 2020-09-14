@@ -14,8 +14,10 @@
 else 
 {
    <h1>Sign Up</h1>
-   <input placeholder="Login" type="text" value="@CurrentValue" @onchange="@((ChangeEventArgs e) => CurrentValue = e.Value.ToString())" />
-   <input placeholder="password" type="text" value="@Password" @onchange="@((ChangeEventArgs e) => Password = e.Value.ToString())" />
+   <input placeholder="Username" type="text" value="@CurrentValue" @onchange="@((ChangeEventArgs e) => Username = e.Value.ToString())" />
+   <input placeholder="Firstname" type="text" value="@CurrentValue" @onchange="@((ChangeEventArgs e) => Firstname = e.Value.ToString())" />
+   <input placeholder="Lastname" type="text" value="@CurrentValue" @onchange="@((ChangeEventArgs e) => Lastname = e.Value.ToString())" />
+   <input placeholder="Password" type="text" value="@Password" @onchange="@((ChangeEventArgs e) => SetPassword = e.Value.ToString())" />
    <button @onclick="SetCred">Submit</button>
    <p>Have an Account? <span @onclick="updateUserExistence">Log In</span></p>
 }
@@ -32,6 +34,10 @@ else
 @code {
    private string CurrentValue { get; set; }
    private string Password { get; set; }
+   private string Username { get; set; }
+   private string Firstname { get; set; }
+   private string Lastname { get; set; }
+   private string SetPassword { get; set; }
    private ResponseLogin LA { get; set; }
    private bool ExistingUser { get; set; }
 
@@ -51,5 +57,10 @@ else
       Login.password = Password;
       LA = await LAuth.UserLogin(); 
       Nav.NavigateTo($"/home/{LA._id}");
+   }
+
+   public void CreateUser()
+   {
+      
    }
 }
