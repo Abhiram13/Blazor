@@ -2,6 +2,7 @@
 @using Auth
 @inject NavigationManager Nav
 @inject LoginAuth LAuth
+@inject Create C
 
 @if (ExistingUser)
 {
@@ -14,11 +15,11 @@
 else 
 {
    <h1>Sign Up</h1>
-   <input placeholder="Username" type="text" value="@CurrentValue" @onchange="@((ChangeEventArgs e) => Username = e.Value.ToString())" />
-   <input placeholder="Firstname" type="text" value="@CurrentValue" @onchange="@((ChangeEventArgs e) => Firstname = e.Value.ToString())" />
-   <input placeholder="Lastname" type="text" value="@CurrentValue" @onchange="@((ChangeEventArgs e) => Lastname = e.Value.ToString())" />
-   <input placeholder="Password" type="text" value="@Password" @onchange="@((ChangeEventArgs e) => SetPassword = e.Value.ToString())" />
-   <button @onclick="SetCred">Submit</button>
+   <input placeholder="Username" type="text" value="@Username" @onchange="@((ChangeEventArgs e) => Username = e.Value.ToString())" />
+   <input placeholder="Firstname" type="text" value="@Firstname" @onchange="@((ChangeEventArgs e) => Firstname = e.Value.ToString())" />
+   <input placeholder="Lastname" type="text" value="@Lastname" @onchange="@((ChangeEventArgs e) => Lastname = e.Value.ToString())" />
+   <input placeholder="Password" type="text" value="@SetPassword" @onchange="@((ChangeEventArgs e) => SetPassword = e.Value.ToString())" />
+   <button @onclick="Create">Submit</button>
    <p>Have an Account? <span @onclick="updateUserExistence">Log In</span></p>
 }
 
@@ -31,6 +32,15 @@ else
    <h1>@LA.firstname</h1>
 }
 
+@if (SignUpRes == null)
+{
+    <h6>Still Loading</h6>
+}
+else
+{
+   <h6>@SignUpRes</h6>
+}
+
 @code {
    private string CurrentValue { get; set; }
    private string Password { get; set; }
@@ -39,6 +49,7 @@ else
    private string Lastname { get; set; }
    private string SetPassword { get; set; }
    private ResponseLogin LA { get; set; }
+   private string SignUpRes { get; set; }
    private bool ExistingUser { get; set; }
 
    protected override void OnInitialized()
@@ -59,8 +70,12 @@ else
       Nav.NavigateTo($"/home/{LA._id}");
    }
 
-   public void CreateUser()
+   public async void Create()
    {
-      
+      SignUpObject.username = Username;
+      SignUpObject.firstname = Firstname;
+      SignUpObject.lastname = Lastname;
+      SignUpObject.password = SetPassword;
+      SignUpRes = await C.CreateUser();
    }
 }

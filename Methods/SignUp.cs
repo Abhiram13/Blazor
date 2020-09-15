@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Auth
 {
-   class SignUp
+   public class SignUpObject
    {
       public static string username { get; set; }
       public static string firstname { get; set; }
@@ -14,9 +14,9 @@ namespace Auth
       public static string password { get; set; }
    }
 
-   class CreateUser
+   public class Create
    {
-      async Task<SignUp> SetUser()
+      public async Task<string> CreateUser()
       {
          // make an instance of HttpClient
          HttpClient http = new HttpClient();
@@ -25,10 +25,10 @@ namespace Auth
          // using Json Serialize Object, 
          // thus converting it into stringify Json
          string data = JsonConvert.SerializeObject(new { 
-            userName = SignUp.username, 
-            firstName = SignUp.firstname, 
-            lastName = SignUp.lastname, 
-            passWord = SignUp.password 
+            userName = SignUpObject.username, 
+            firstName = SignUpObject.firstname, 
+            lastName = SignUpObject.lastname, 
+            passWord = SignUpObject.password
          });
 
          // attaching headers
@@ -37,14 +37,13 @@ namespace Auth
          // making post request and getting the data
          HttpResponseMessage res = http.PostAsync("http://localhost:7000/signIn.js", str).Result;
 
+         Console.WriteLine(res);
+
          // converting data into string Json
          string responseData = await res.Content.ReadAsStringAsync();
 
-         // converting Json string into object
-         SignUp d = JsonConvert.DeserializeObject<SignUp>(responseData);
-
          // returning object
-         return d;
+         return responseData;
       }
    }
 }
