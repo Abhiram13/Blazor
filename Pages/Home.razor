@@ -1,15 +1,37 @@
-@* @layout Home *@
 @page "/home/{Id}"
+@using BlazorApp.Data
+@inject GetRequest ItemsRequest
+@inject Mordor Mordor
 
 <h1>This is Home Page and the id is @Id</h1>
+
+<div class="row flex-wrap">
+   @if (M == null)
+   {
+      <div class="col-sm-4 p-0 border-black border mx-3">Null</div>
+   }
+   else
+   {
+      @foreach (var item in M)
+      {
+         <div class="col-sm-4 p-0 border-black border mx-3">@item.itemName</div>          
+      }      
+   }
+</div>
 
 @code
 {
    [Parameter]
    public string Id { get; set; }
+   public Mordor[] M { get; set; }
 
    protected override void OnParametersSet()
    {
       var x = Id;
+   }
+
+   protected override async Task OnInitializedAsync()
+   {
+      M = await ItemsRequest.MordorRequest();
    }
 }
