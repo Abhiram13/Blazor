@@ -2,8 +2,11 @@
 @using BlazorApp.Data
 @inject GetRequest ItemsRequest
 @inject Mordor Mordor
+@inject SearchAttributes S
+@inject Search Srch
 
-<h1>This is Home Page and the id is @Id</h1>
+<input value="@value" @onchange="@(async (ChangeEventArgs e) => { value = e.Value.ToString(); await GetFilteredData(value); })" placeholder="Search the Item" />
+
 
 <div class="row flex-wrap">
    @if (M == null)
@@ -14,7 +17,22 @@
    {
       @foreach (var item in M)
       {
-         <div class="col-sm-4 p-0 border-black border mx-3">@item.itemName</div>          
+         <div class="col-sm-3 p-0 border-black border mx-3">@item.itemName</div>          
+      }      
+   }
+</div>
+
+<div class="row flex-wrap">
+   @if (Filter == null)
+   {
+      <div class="col-sm-4 p-0 border-black border mx-3">Nothing Here</div>
+   }
+   else
+   {
+      <h6>True</h6>
+      @foreach (var item in Filter)
+      {
+         <div class="col-sm-3 p-0 border-black border mx-3">@item.itemName</div>          
       }      
    }
 </div>
@@ -24,14 +42,22 @@
    [Parameter]
    public string Id { get; set; }
    public Mordor[] M { get; set; }
+   public Mordor[] Filter { get; set; }
+   public string value { get; set; }
 
    protected override void OnParametersSet()
    {
       var x = Id;
    }
 
+   // fetching all items in DB
    protected override async Task OnInitializedAsync()
    {
       M = await ItemsRequest.MordorRequest();
+   }
+
+   protected async Task GetFilteredData(string value)
+   {
+      Filter = await Srch.SearchItem(value);
    }
 }

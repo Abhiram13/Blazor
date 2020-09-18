@@ -1,13 +1,27 @@
 ﻿<Properties GitUserInfo="UsingGIT" StartupConfiguration="{91C55C77-CFD3-47AE-8210-E3BE7148BDA9}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Startup.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Methods/Functions/Search.cs">
     <Files>
-      <File FileName="Program.cs" Line="11" Column="12" />
-      <File FileName="Methods/loginCred.cs" />
-      <File FileName="Pages/FetchData.razor" />
-      <File FileName="Methods/ObjectFetch.cs" />
-      <File FileName="Methods/Object.cs" />
-      <File FileName="Startup.cs" Line="44" Column="47" />
+      <File FileName="Program.cs" Line="27" Column="45" />
+      <File FileName="Pages/FetchData.razor" Line="1" Column="1" />
+      <File FileName="Startup.cs" Line="44" Column="45" />
+      <File FileName="Methods/Functions/Search.cs" Line="18" Column="48" />
     </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="BlazorApp" expanded="True">
+            <Node name="BlazorApp" expanded="True">
+              <Node name="Methods" expanded="True">
+                <Node name="Functions" expanded="True">
+                  <Node name="Search.cs" selected="True" />
+                </Node>
+                <Node name="Items" expanded="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

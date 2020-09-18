@@ -32,6 +32,8 @@ namespace BlazorApp
          services.AddSingleton<LoginAuth>();
          services.AddSingleton<Create>();
          services.AddSingleton<Mordor>();
+         services.AddSingleton<SearchAttributes>();
+         services.AddSingleton<Search>();
       }
 
       // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
