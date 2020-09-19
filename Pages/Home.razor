@@ -5,24 +5,31 @@
 @inject SearchAttributes S
 @inject Search Srch
 
-<input value="@value" @onchange="@(async (ChangeEventArgs e) => { value = e.Value.ToString(); await GetFilteredData(value); })" placeholder="Search the Item" />
+@* <input value="@value" @oninput="@(async (ChangeEventArgs e) => { value = e.Value.ToString(); await GetFilteredData(value); })" placeholder="Search the Item" /> *@
 
+<section class="container mx-auto p-0 mt-5">
+   <section class="bg-white rounded mx-auto col-sm-10 p-0 shadow">
+      <div class="d-flex flex-wrap p-3 justify-content-between">
+         @if (M == null)
+         {
+            <div class="col-sm-4 p-0 border-black border mx-3">Null</div>
+         }
+         else
+         {
+            @foreach (var item in M)
+            {
+               <div class="col-sm-3 p-3 mx-3 shadow mb-5" style="background-color: beige; border-radius: 20px;">
+                  <img src="@item.imageURL" style="width: 100%; height: 83%;" />
+                  <h6 class="mt-1 text-center">@item.itemName</h6>
+               </div>   
 
-<div class="row flex-wrap">
-   @if (M == null)
-   {
-      <div class="col-sm-4 p-0 border-black border mx-3">Null</div>
-   }
-   else
-   {
-      @foreach (var item in M)
-      {
-         <div class="col-sm-3 p-0 border-black border mx-3">@item.itemName</div>          
-      }      
-   }
-</div>
+            }      
+         }
+      </div>
+   </section>
+</section>
 
-<div class="row flex-wrap">
+@* <div class="row flex-wrap">
    @if (Filter == null)
    {
       <div class="col-sm-4 p-0 border-black border mx-3">Nothing Here</div>
@@ -35,7 +42,7 @@
          <div class="col-sm-3 p-0 border-black border mx-3">@item.itemName</div>          
       }      
    }
-</div>
+</div> *@
 
 @code
 {

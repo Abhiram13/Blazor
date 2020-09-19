@@ -14,13 +14,14 @@ namespace BlazorApp.Data
    {
       public async Task<Mordor[]> SearchItem(string value)
       {
+         Console.WriteLine(value);
          GetRequest request = new GetRequest();
          SearchAttributes Srch = new SearchAttributes();
          Srch.Items = await request.MordorRequest();
          List<Mordor> list = new List<Mordor>();
          for (int i = 0; i < Srch.Items.Length; i++)
          {
-            if (Srch.Items[i].itemName.Substring(0, value.Length) == value)
+            if (Srch.Items[i].itemName.Substring(0, value.Length).ToUpper() == value.ToUpper())
             {
                list.Add(Srch.Items[i]);
             }

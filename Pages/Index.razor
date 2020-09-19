@@ -4,24 +4,28 @@
 @inject LoginAuth LAuth
 @inject Create C
 
-@if (ExistingUser)
-{
-   <h1>Login</h1>
-   <input placeholder="Login" type="text" value="@CurrentValue" @onchange="@((ChangeEventArgs e) => CurrentValue = e.Value.ToString())" />
-   <input placeholder="password" type="text" value="@Password" @onchange="@((ChangeEventArgs e) => Password = e.Value.ToString())" />
-   <button @onclick="SetCred">Submit</button>
-   <p>Don't have an Account? <span @onclick="updateUserExistence">Sign Up</span></p>   
-}
-else 
-{
-   <h1>Sign Up</h1>
-   <input placeholder="Username" type="text" value="@Username" @onchange="@((ChangeEventArgs e) => Username = e.Value.ToString())" />
-   <input placeholder="Firstname" type="text" value="@Firstname" @onchange="@((ChangeEventArgs e) => Firstname = e.Value.ToString())" />
-   <input placeholder="Lastname" type="text" value="@Lastname" @onchange="@((ChangeEventArgs e) => Lastname = e.Value.ToString())" />
-   <input placeholder="Password" type="text" value="@SetPassword" @onchange="@((ChangeEventArgs e) => SetPassword = e.Value.ToString())" />
-   <button @onclick="Create">Submit</button>
-   <p>Have an Account? <span @onclick="updateUserExistence">Log In</span></p>
-}
+<section class="container p-0 mx-auto">
+   <section class="col-sm-5 p-0 bg-white shadow mx-auto p-3 rounded">
+      @if (ExistingUser)
+      {
+         <h4 class="text-center mb-3">Login</h4>         
+         <input style="background-color: #f3f3f3" placeholder="Username" type="text" class="row mx-auto mb-3 border-0 p-2 rounded col-sm-9 text-center" value="@CurrentValue" @onchange="@((ChangeEventArgs e) => CurrentValue = e.Value.ToString())" />
+         <input style="background-color: #f3f3f3" placeholder="password" type="text" class="row mx-auto mb-3 border-0 p-2 rounded col-sm-9 text-center" value="@Password" @onchange="@((ChangeEventArgs e) => Password = e.Value.ToString())" />
+         <button class="border-0 px-5 d-flex mx-auto rounded shadow-sm py-2" style="background-color: bisque; font-size: small;" @onclick="SetCred">Submit</button>
+         <p class="text-center mt-4" style="font-size: small;">Don't have an Account? <span style="color: salmon; cursor: pointer;" @onclick="updateUserExistence">Sign Up</span></p>   
+      }
+      else 
+      {
+         <h4 class="text-center mb-3">Sign In</h4>
+         <input style="background-color: #f3f3f3" class="row mx-auto mb-3 border-0 p-2 rounded col-sm-9 text-center" placeholder="Username" type="text" value="@Username" @onchange="@((ChangeEventArgs e) => Username = e.Value.ToString())" />
+         <input style="background-color: #f3f3f3" class="row mx-auto mb-3 border-0 p-2 rounded col-sm-9 text-center" placeholder="Firstname" type="text" value="@Firstname" @onchange="@((ChangeEventArgs e) => Firstname = e.Value.ToString())" />
+         <input style="background-color: #f3f3f3" class="row mx-auto mb-3 border-0 p-2 rounded col-sm-9 text-center" placeholder="Lastname" type="text" value="@Lastname" @onchange="@((ChangeEventArgs e) => Lastname = e.Value.ToString())" />
+         <input style="background-color: #f3f3f3" class="row mx-auto mb-3 border-0 p-2 rounded col-sm-9 text-center" placeholder="Password" type="text" value="@SetPassword" @onchange="@((ChangeEventArgs e) => SetPassword = e.Value.ToString())" />
+         <button class="border-0 px-5 d-flex mx-auto rounded shadow-sm py-2" style="background-color: bisque; font-size: small;" @onclick="Create">Submit</button>
+         <p class="text-center mt-4" style="font-size: small;">Have an Account? <span style="color: salmon; cursor: pointer;" @onclick="updateUserExistence">Log In</span></p>
+      }
+   </section>
+</section>
 
 @if (LA == null)
 {
@@ -66,7 +70,7 @@ else
    {
       Login.username = CurrentValue;
       Login.password = Password;
-      LA = await LAuth.UserLogin(); 
+      LA = await LAuth.UserLogin();
       Nav.NavigateTo($"/home/{LA._id}");
    }
 
