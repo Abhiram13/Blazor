@@ -5,81 +5,105 @@
 @inject Create C
 
 <section class="container p-0 mx-auto">
-   <section class="col-sm-5 p-0 bg-white shadow mx-auto p-3 rounded">
-      @if (ExistingUser)
-      {
-         <h4 class="text-center mb-3">Login</h4>         
-         <input style="background-color: #f3f3f3" placeholder="Username" type="text" class="row mx-auto mb-3 border-0 p-2 rounded col-sm-9 text-center" value="@CurrentValue" @onchange="@((ChangeEventArgs e) => CurrentValue = e.Value.ToString())" />
-         <input style="background-color: #f3f3f3" placeholder="password" type="text" class="row mx-auto mb-3 border-0 p-2 rounded col-sm-9 text-center" value="@Password" @onchange="@((ChangeEventArgs e) => Password = e.Value.ToString())" />
-         <button class="border-0 px-5 d-flex mx-auto rounded shadow-sm py-2" style="background-color: bisque; font-size: small;" @onclick="SetCred">Submit</button>
-         <p class="text-center mt-4" style="font-size: small;">Don't have an Account? <span style="color: salmon; cursor: pointer;" @onclick="updateUserExistence">Sign Up</span></p>   
-      }
-      else 
-      {
-         <h4 class="text-center mb-3">Sign In</h4>
-         <input style="background-color: #f3f3f3" class="row mx-auto mb-3 border-0 p-2 rounded col-sm-9 text-center" placeholder="Username" type="text" value="@Username" @onchange="@((ChangeEventArgs e) => Username = e.Value.ToString())" />
-         <input style="background-color: #f3f3f3" class="row mx-auto mb-3 border-0 p-2 rounded col-sm-9 text-center" placeholder="Firstname" type="text" value="@Firstname" @onchange="@((ChangeEventArgs e) => Firstname = e.Value.ToString())" />
-         <input style="background-color: #f3f3f3" class="row mx-auto mb-3 border-0 p-2 rounded col-sm-9 text-center" placeholder="Lastname" type="text" value="@Lastname" @onchange="@((ChangeEventArgs e) => Lastname = e.Value.ToString())" />
-         <input style="background-color: #f3f3f3" class="row mx-auto mb-3 border-0 p-2 rounded col-sm-9 text-center" placeholder="Password" type="text" value="@SetPassword" @onchange="@((ChangeEventArgs e) => SetPassword = e.Value.ToString())" />
-         <button class="border-0 px-5 d-flex mx-auto rounded shadow-sm py-2" style="background-color: bisque; font-size: small;" @onclick="Create">Submit</button>
-         <p class="text-center mt-4" style="font-size: small;">Have an Account? <span style="color: salmon; cursor: pointer;" @onclick="updateUserExistence">Log In</span></p>
-      }
-   </section>
+     <section class="col-sm-5 p-0 bg-white shadow mx-auto p-3 rounded">
+          @if (ExistingUser)
+          {
+               <h4 class="text-center mb-3">Login</h4>         
+               <input 
+                    style="background-color: #f3f3f3" 
+                    placeholder="Username" 
+                    type="text" 
+                    class="row mx-auto mb-3 border-0 p-2 rounded col-sm-9 text-center" 
+                    value="@CurrentValue" @onchange="@((ChangeEventArgs e) => CurrentValue = e.Value.ToString())" 
+               />
+               <input 
+                    style="background-color: #f3f3f3" 
+                    placeholder="password" 
+                    type="text" 
+                    class="row mx-auto mb-3 border-0 p-2 rounded col-sm-9 text-center" 
+                    value="@Password" @onchange="@((ChangeEventArgs e) => Password = e.Value.ToString())" 
+               />
+               <button class="border-0 px-5 d-flex mx-auto rounded shadow-sm py-2" style="background-color: bisque; font-size: small;" @onclick="SetCred">Submit</button>
+               <p class="text-center mt-4" style="font-size: small;">Don't have an Account? <span style="color: salmon; cursor: pointer;" @onclick="updateUserExistence">Sign Up</span></p>   
+          } else {
+               <h4 class="text-center mb-3">Sign In</h4>
+               <input 
+                    style="background-color: #f3f3f3" 
+                    class="row mx-auto mb-3 border-0 p-2 rounded col-sm-9 text-center" 
+                    placeholder="Username" 
+                    type="text" 
+                    value="@Username" @onchange="@((ChangeEventArgs e) => Username = e.Value.ToString())" 
+               />
+               <input 
+                    style="background-color: #f3f3f3" 
+                    class="row mx-auto mb-3 border-0 p-2 rounded col-sm-9 text-center" 
+                    placeholder="Firstname" 
+                    type="text" 
+                    value="@Firstname" @onchange="@((ChangeEventArgs e) => Firstname = e.Value.ToString())" 
+               />
+               <input 
+                    style="background-color: #f3f3f3" 
+                    class="row mx-auto mb-3 border-0 p-2 rounded col-sm-9 text-center" 
+                    placeholder="Lastname" 
+                    type="text" 
+                    value="@Lastname" @onchange="@((ChangeEventArgs e) => Lastname = e.Value.ToString())" 
+               />
+               <input 
+                    style="background-color: #f3f3f3" 
+                    class="row mx-auto mb-3 border-0 p-2 rounded col-sm-9 text-center" 
+                    placeholder="Password" 
+                    type="text" 
+                    value="@SetPassword" @onchange="@((ChangeEventArgs e) => SetPassword = e.Value.ToString())" 
+               />
+               <button class="border-0 px-5 d-flex mx-auto rounded shadow-sm py-2" style="background-color: bisque; font-size: small;" @onclick="Create">Submit</button>
+               <p class="text-center mt-4" style="font-size: small;">Have an Account? <span style="color: salmon; cursor: pointer;" @onclick="updateUserExistence">Log In</span></p>
+          }
+     </section>
 </section>
 
-@if (LA == null)
-{
+@if (LA == null) {
    <h6>Loading....</h6>
-}
-else
-{
+} else {
    <h1>@LA.firstname</h1>
 }
 
-@if (SignUpRes == null)
-{
+@if (SignUpRes == null) {
     <h6>Still Loading</h6>
-}
-else
-{
+} else {
    <h6>@SignUpRes</h6>
 }
 
 @code {
-   private string CurrentValue { get; set; }
-   private string Password { get; set; }
-   private string Username { get; set; }
-   private string Firstname { get; set; }
-   private string Lastname { get; set; }
-   private string SetPassword { get; set; }
-   private ResponseLogin LA { get; set; }
-   private string SignUpRes { get; set; }
-   private bool ExistingUser { get; set; }
+     private string CurrentValue { get; set; }
+     private string Password { get; set; }
+     private string Username { get; set; }
+     private string Firstname { get; set; }
+     private string Lastname { get; set; }
+     private string SetPassword { get; set; }
+     private ResponseLogin LA { get; set; }
+     private string SignUpRes { get; set; }
+     private bool ExistingUser { get; set; }
 
-   protected override void OnInitialized()
-   {
-      ExistingUser = true;
-   }
+     protected override void OnInitialized() {
+          ExistingUser = true;
+     }
 
-   public void updateUserExistence()
-   {
-      ExistingUser = !ExistingUser;
-   }
+     public void updateUserExistence() {
+          ExistingUser = !ExistingUser;
+     }
 
-   public async void SetCred()
-   {
-      Login.username = CurrentValue;
-      Login.password = Password;
-      LA = await LAuth.UserLogin();
-      Nav.NavigateTo($"/home/{LA._id}");
-   }
+     public async void SetCred() {
+          Login.username = CurrentValue;
+          Login.password = Password;
+          LA = await LAuth.UserLogin();
+          Nav.NavigateTo($"/home/{LA._id}");
+     }
 
-   public async void Create()
-   {
-      SignUpObject.username = Username;
-      SignUpObject.firstname = Firstname;
-      SignUpObject.lastname = Lastname;
-      SignUpObject.password = SetPassword;
-      SignUpRes = await C.CreateUser();
-   }
+     public async void Create() {
+          SignUpObject.username = Username;
+          SignUpObject.firstname = Firstname;
+          SignUpObject.lastname = Lastname;
+          SignUpObject.password = SetPassword;
+          SignUpRes = await C.CreateUser();
+     }
 }

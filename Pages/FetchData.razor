@@ -3,40 +3,34 @@
 @inject GetRequest data
 
 <h1>Weather forecast</h1>
-
 <p>This component demonstrates fetching data from a service.</p>
 
-@if (M == null)
-{
+@if (M == null) {
    <p>Loding</p>
-}
-else
-{
-   <table class="table">
-   <thead>
-      <tr>
-         <th>Item Name</th>
-         <th>Category</th>
-         <th>Id</th>
-      </tr>
-   </thead>
-   <tbody>
-      @foreach (var d in M)
-      {
-         <tr>
-            <td>@d.itemName</td>
-            <td>@d.category</td>
-            <td>@d._id</td>
-         </tr>
-      }
-   </tbody>
-</table>
+} else {
+     <table class="table">
+          <thead>
+               <tr>
+                    <th>Item Name</th>
+                    <th>Category</th>
+                    <th>Id</th>
+               </tr>
+          </thead>
+          <tbody>
+               @foreach (var d in M) {             
+                    <tr>
+                         <td>@d.itemName</td>
+                         <td>@d.category</td>
+                         <td>@d._id</td>
+                    </tr>
+               }
+          </tbody>
+     </table>
 }
 
 @code {
-   private Mordor[] M;
-   protected override async Task OnInitializedAsync()
-   {
-      M = await data.MordorRequest();
-   }
+     private Mordor[] M;
+     protected override async Task OnInitializedAsync() {
+          M = await data.MordorRequest();
+     }
 }
