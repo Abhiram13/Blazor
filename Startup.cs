@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Authorise;
 
 namespace BlazorApp {
      public class Startup {
@@ -22,7 +23,9 @@ namespace BlazorApp {
           public void ConfigureServices(IServiceCollection services) {
                services.AddRazorPages();
                services.AddServerSideBlazor();
-               // services.AddSingleton<GetRequest>();
+               services.AddSingleton<Login>();
+               services.AddSingleton<LoginRequestBody>();
+               services.AddSingleton<LoginResponseBody>();
           }
 
           // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

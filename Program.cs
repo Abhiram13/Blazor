@@ -11,16 +11,6 @@ using Microsoft.Extensions.Logging;
 
 namespace BlazorApp {
      public class Program {
-          // static async Task Main()
-          // {
-          //    GetRequest get = new GetRequest();
-          //    var docs = await get.MordorRequest();
-          //    foreach (var list in docs)
-          //    {
-          //       Console.WriteLine(list.itemName);
-          //    }
-          // }
-
           public static void Main(string[] args) {
                CreateHostBuilder(args).Build().Run();
           }
