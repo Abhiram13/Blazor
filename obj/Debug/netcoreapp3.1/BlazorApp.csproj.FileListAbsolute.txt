@@ -66,8 +66,6 @@
 /Users/abhiramnagadi/Documents/Blazor/obj/Debug/netcoreapp3.1/BlazorApp.MvcApplicationPartsAssemblyInfo.cache
 /Users/abhiramnagadi/Documents/Blazor/obj/Debug/netcoreapp3.1/BlazorApp.RazorComponent.input.cache
 /Users/abhiramnagadi/Documents/Blazor/obj/Debug/netcoreapp3.1/RazorDeclaration/App.razor.g.cs
-/Users/abhiramnagadi/Documents/Blazor/obj/Debug/netcoreapp3.1/RazorDeclaration/Pages/Counter.razor.g.cs
-/Users/abhiramnagadi/Documents/Blazor/obj/Debug/netcoreapp3.1/RazorDeclaration/Pages/FetchData.razor.g.cs
 /Users/abhiramnagadi/Documents/Blazor/obj/Debug/netcoreapp3.1/RazorDeclaration/Pages/Index.razor.g.cs
 /Users/abhiramnagadi/Documents/Blazor/obj/Debug/netcoreapp3.1/RazorDeclaration/Shared/MainLayout.razor.g.cs
 /Users/abhiramnagadi/Documents/Blazor/obj/Debug/netcoreapp3.1/RazorDeclaration/Shared/NavMenu.razor.g.cs
@@ -78,8 +76,6 @@
 /Users/abhiramnagadi/Documents/Blazor/obj/Debug/netcoreapp3.1/BlazorApp.TagHelpers.output.cache
 /Users/abhiramnagadi/Documents/Blazor/obj/Debug/netcoreapp3.1/BlazorApp.RazorCoreGenerate.cache
 /Users/abhiramnagadi/Documents/Blazor/obj/Debug/netcoreapp3.1/Razor/App.razor.g.cs
-/Users/abhiramnagadi/Documents/Blazor/obj/Debug/netcoreapp3.1/Razor/Pages/Counter.razor.g.cs
-/Users/abhiramnagadi/Documents/Blazor/obj/Debug/netcoreapp3.1/Razor/Pages/FetchData.razor.g.cs
 /Users/abhiramnagadi/Documents/Blazor/obj/Debug/netcoreapp3.1/Razor/Pages/Index.razor.g.cs
 /Users/abhiramnagadi/Documents/Blazor/obj/Debug/netcoreapp3.1/Razor/Shared/MainLayout.razor.g.cs
 /Users/abhiramnagadi/Documents/Blazor/obj/Debug/netcoreapp3.1/Razor/Shared/NavMenu.razor.g.cs
