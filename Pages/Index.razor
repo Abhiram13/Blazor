@@ -58,11 +58,11 @@
      </section>
 </section>
 
-@if (statusCode == 200) {
+@* @if (statusCode == 200) {
      <h3>OK</h3>
 } else {
      <h3>@(loader ? "loading...." : "")</h3>
-}
+} *@
 
 @code {
      private string loginUserName { get; set; }
@@ -72,7 +72,7 @@
      private string Lastname { get; set; }
      private string SetPassword { get; set; }
      private bool ExistingUser { get; set; }
-     private int statusCode { get; set; }
+     private Task<int> statusCode { get; set; }
      private bool loader { get; set; }
 
      // ComponentOnMount
@@ -85,9 +85,9 @@
           ExistingUser = !ExistingUser;
      }
 
-     public void triggerLogin() {
+     public async void triggerLogin() {
           loader = true;
-          new LoginRequestBody().username = loginUserName;          
-          statusCode = Login.logUser();
+          LoginRequestBody.username = loginUserName;
+          await new Login().logUser();
      }
 }
