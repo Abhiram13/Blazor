@@ -24,7 +24,7 @@ namespace Authorise {
      class Login {
           private static HttpResponseMessage responseMessage;
 
-          public static async Task<int> statusCode() {
+          public static int statusCode() {
                HttpClient client = new HttpClient();
                string json = JsonSerializer.Serialize(new { username = LoginRequestBody.username, password = LoginRequestBody.password });
                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");

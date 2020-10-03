@@ -87,7 +87,7 @@
           loader = true;
           LoginRequestBody.username = loginUserName;
           LoginRequestBody.password = loginpassword;
-          if (await Login.statusCode() == 200) {
+          if (Login.statusCode() == 200) {
                status = await Login.logUser();
           } 
      }
