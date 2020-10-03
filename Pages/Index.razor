@@ -18,7 +18,7 @@
                     placeholder="password" 
                     type="text" 
                     class="row mx-auto mb-3 border-0 p-2 rounded col-sm-9 text-center" 
-                    value="@Password" @onchange="@((ChangeEventArgs e) => Password = e.Value.ToString())" 
+                    value="@loginpassword" @onchange="@((ChangeEventArgs e) => loginpassword = e.Value.ToString())" 
                />
                <button class="border-0 px-5 d-flex mx-auto rounded shadow-sm py-2" style="background-color: bisque; font-size: small;" @onclick="triggerLogin">Submit</button>
                <p class="text-center mt-4" style="font-size: small;">Don't have an Account? <span style="color: salmon; cursor: pointer;" @onclick="updateUserExistence">Sign Up</span></p>   
@@ -58,21 +58,19 @@
      </section>
 </section>
 
-@* @if (statusCode == 200) {
-     <h3>OK</h3>
-} else {
-     <h3>@(loader ? "loading...." : "")</h3>
-} *@
+@if (status != null) {
+     <h3>@status.firstname</h3>
+}
 
 @code {
      private string loginUserName { get; set; }
-     private string Password { get; set; }
+     private string loginpassword { get; set; }
      private string Username { get; set; }
      private string Firstname { get; set; }
      private string Lastname { get; set; }
      private string SetPassword { get; set; }
      private bool ExistingUser { get; set; }
-     private Task<int> statusCode { get; set; }
+     private LoginResponseBody status { get; set; }
      private bool loader { get; set; }
 
      // ComponentOnMount
@@ -88,6 +86,9 @@
      public async void triggerLogin() {
           loader = true;
           LoginRequestBody.username = loginUserName;
-          await new Login().logUser();
+          LoginRequestBody.password = loginpassword;
+          if (await Login.statusCode() == 200) {
+               status = await Login.logUser();
+          } 
      }
 }
