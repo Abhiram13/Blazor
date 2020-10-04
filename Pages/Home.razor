@@ -1,13 +1,29 @@
-@page "/home/"
+@page "/home/{Id}"
+@using User;
+@using Authorise;
+@using System.Text;
 
 <section class="container mx-auto p-0 mt-5">
      <section class="bg-white rounded mx-auto col-sm-10 p-0 shadow">
           <div class="d-flex flex-wrap p-3">
-               <h2>HOME</h2>
+               @if (ResponseBody != null)
+               {
+                   <h2>@ResponseBody.username</h2>
+               }
           </div>
      </section>
 </section>
 
 @code
 {
+     [Parameter]
+     public string Id { get; set; }
+
+     public LoginResponseBody ResponseBody { get; set; }
+
+     protected async override void OnParametersSet() {
+          string userId = Encoding.UTF8.GetString(Convert.FromBase64String(Id));
+          ResponseBody = await FindUser.sendReq(userId);
+     }
+
 }

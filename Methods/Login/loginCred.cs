@@ -1,6 +1,5 @@
 using System;
 using System.Net.Http;
-using MongoDB.Driver;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Text;
@@ -12,7 +11,7 @@ namespace Authorise {
      }
 
      public class LoginResponseBody {
-          public MongoDB.Bson.ObjectId _id { get; set; }
+          public MongoDB.Bson.ObjectId _id { get ; set ;}
           public string username { get; set; }
           public string firstname { get; set; }
           public string lastname { get; set; }

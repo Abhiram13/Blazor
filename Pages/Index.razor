@@ -1,5 +1,7 @@
 ﻿@page "/"
+@using System.Text;
 @using Authorise;
+@inject NavigationManager nav;
 
 <section class="container p-0 mx-auto mt-5">
      <section class="col-sm-5 p-0 bg-white shadow mx-auto p-3 rounded">
@@ -60,6 +62,7 @@
 
 @if (status != null) {
      <h3>@status.firstname</h3>
+     nav.NavigateTo($"/home/{encode(status.username)}/");
 }
 
 @code {
@@ -90,5 +93,10 @@
           if (Login.statusCode() == 200) {
                status = await Login.logUser();
           } 
+     }
+
+     public string encode(string str) {
+          byte[] bytes = Encoding.UTF8.GetBytes(str);
+          return Convert.ToBase64String(bytes);
      }
 }
