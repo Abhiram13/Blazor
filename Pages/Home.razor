@@ -2,13 +2,16 @@
 @using User;
 @using Authorise;
 @using System.Text;
+@using Item;
 
 <section class="container mx-auto p-0 mt-5">
      <section class="bg-white rounded mx-auto col-sm-10 p-0 shadow">
           <div class="d-flex flex-wrap p-3">
-               @if (ResponseBody != null)
+               @if (Items != null)
                {
-                   <h2>@ResponseBody.username</h2>
+                   foreach (ItemsResponseBody item in Items) {
+                        <div class="p-2 shadow rounded bg-white mr-4" style="width: 30%;">@item.itemName</div>
+                   }
                }
           </div>
      </section>
@@ -20,10 +23,14 @@
      public string Id { get; set; }
 
      public LoginResponseBody ResponseBody { get; set; }
+     public ItemsResponseBody[] Items { get; set; }
 
      protected async override void OnParametersSet() {
           string userId = Encoding.UTF8.GetString(Convert.FromBase64String(Id));
-          ResponseBody = await FindUser.sendReq(userId);
+          ResponseBody = await FindUser.getUser(userId);
      }
 
+     protected override void OnInitialized() {
+          Items = GetItems.fetchItems();
+     }
 }

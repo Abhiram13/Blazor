@@ -21,10 +21,17 @@ namespace Authorise {
      }
 
      class Login {
-          private static HttpResponseMessage responseMessage;
+          private static HttpClient client = new HttpClient();
+          private static HttpResponseMessage responseMessage;       
+
+          public static int UserSearch(string username) {
+               string requestbody = JsonSerializer.Serialize(new { username = username });
+               StringContent content = new StringContent(requestbody, Encoding.UTF8, "application/json");
+               HttpResponseMessage response = client.PostAsync("http://localhost:1995/FindUser/", content).Result;
+               return (int) response.StatusCode;
+          }   
 
           public static int statusCode() {
-               HttpClient client = new HttpClient();
                string json = JsonSerializer.Serialize(new { username = LoginRequestBody.username, password = LoginRequestBody.password });
                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
                responseMessage = client.PostAsync("http://localhost:1995/login/", content).Result;

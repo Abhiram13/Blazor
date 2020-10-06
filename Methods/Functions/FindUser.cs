@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace User {
      public class FindUser {
-          public static async Task<LoginResponseBody> sendReq(string userId) {
+          public static async Task<LoginResponseBody> getUser(string userId) {
                HttpClient client = new HttpClient();
                string json = JsonSerializer.Serialize(new { username = userId });
                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");

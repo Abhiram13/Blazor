@@ -5,24 +5,27 @@
 
 <section class="container p-0 mx-auto mt-5">
      <section class="col-sm-5 p-0 bg-white shadow mx-auto p-3 rounded">
-          @if (ExistingUser)
-          {
+          @if (ExistingUser) {
                <h4 class="text-center mb-3">Login</h4>         
                <input 
                     style="background-color: #f3f3f3" 
                     placeholder="Username" 
                     type="text" 
-                    class="row mx-auto mb-3 border-0 p-2 rounded col-sm-9 text-center" 
-                    value="@loginUserName" @onchange="@((ChangeEventArgs e) => loginUserName = e.Value.ToString())" 
-               />
-               <input 
-                    style="background-color: #f3f3f3" 
-                    placeholder="password" 
-                    type="text" 
-                    class="row mx-auto mb-3 border-0 p-2 rounded col-sm-9 text-center" 
-                    value="@loginpassword" @onchange="@((ChangeEventArgs e) => loginpassword = e.Value.ToString())" 
-               />
-               <button class="border-0 px-5 d-flex mx-auto rounded shadow-sm py-2" style="background-color: bisque; font-size: small;" @onclick="triggerLogin">Submit</button>
+                    class="row mx-auto border-0 p-2 rounded col-sm-9 text-center" 
+                    value="@loginUserName" @onchange="@((ChangeEventArgs e) => { loginUserName = e.Value.ToString(); checkUser(); })" 
+               />               
+               <small style="font-size: small; margin-left: 13%; color: red;">@(userStatusCode == 400 ? "User does not Exist" : "")</small>
+               @if (userStatusCode == 200) {
+                    <input 
+                         style="background-color: #f3f3f3" 
+                         placeholder="password" 
+                         type="text" 
+                         class="row mx-auto mt-3 border-0 p-2 rounded col-sm-9 text-center" 
+                         value="@loginpassword" @onchange="@((ChangeEventArgs e) => loginpassword = e.Value.ToString())" 
+                    />                    
+                    <small style="font-size: small; margin-left: 13%; color: red;">@errorMessage</small>
+               }               
+               <button class="border-0 px-5 mt-3 d-flex mx-auto rounded shadow-sm py-2" style="background-color: bisque; font-size: small;" @onclick="@(() => triggerLogin())">Submit</button>
                <p class="text-center mt-4" style="font-size: small;">Don't have an Account? <span style="color: salmon; cursor: pointer;" @onclick="updateUserExistence">Sign Up</span></p>   
           } else {
                <h4 class="text-center mb-3">Sign In</h4>
@@ -60,6 +63,8 @@
      </section>
 </section>
 
+<p>@loginUserName</p>
+
 @if (status != null) {
      <h3>@status.firstname</h3>
      nav.NavigateTo($"/home/{encode(status.username)}/");
@@ -75,6 +80,8 @@
      private bool ExistingUser { get; set; }
      private LoginResponseBody status { get; set; }
      private bool loader { get; set; }
+     private int userStatusCode { get; set; }
+     private string errorMessage { get; set; }
 
      // ComponentOnMount
      protected override void OnInitialized() {
@@ -86,13 +93,26 @@
           ExistingUser = !ExistingUser;
      }
 
-     public async void triggerLogin() {
-          loader = true;
+     private async void triggerLogin() {          
+          loader = true;          
           LoginRequestBody.username = loginUserName;
           LoginRequestBody.password = loginpassword;
-          if (Login.statusCode() == 200) {
-               status = await Login.logUser();
-          } 
+          int code = Login.statusCode();
+
+          if (loginpassword == null) {
+               errorMessage = "Please Enter Password";
+               return;
+          } else if (code == 200) {
+               status = await Login.logUser();               
+               return;
+          } else if (code == 401) {
+               errorMessage = "Wrong Password";
+               return;
+          }
+     }
+
+     public void checkUser() {
+          userStatusCode = Login.UserSearch(loginUserName);
      }
 
      public string encode(string str) {
