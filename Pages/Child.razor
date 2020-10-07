@@ -1,0 +1,16 @@
+<input @oninput="OnPasswordChanged" required type="text"  value="@text" />
+
+@code {
+     private string text { get; set; }
+
+     [Parameter]
+     public string Text { get; set; }
+
+     [Parameter]
+     public EventCallback<string> TextChanged { get; set; }
+     
+     public void OnPasswordChanged(ChangeEventArgs e) {
+          text = e.Value.ToString();
+          TextChanged.InvokeAsync(text);
+     }
+}

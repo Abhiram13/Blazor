@@ -64,12 +64,17 @@
 </section>
 
 <p>@loginUserName</p>
+<h1>@text</h1>
+<div>
+     <Child @bind-Text="@text" />
+</div>
 
 @if (status != null) {
      nav.NavigateTo($"/home/{encode(status.username)}/");
 }
 
 @code {
+     public string text { get; set; }
      private string loginUserName { get; set; }
      private string loginpassword { get; set; }
      private string Username { get; set; }
