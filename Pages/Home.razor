@@ -1,3 +1,5 @@
+@inherits LayoutComponentBase;
+@layout MainLayout;
 @page "/home/{Id}"
 @using User;
 @using Authorise;
@@ -5,15 +7,18 @@
 @using Item;
 
 <section class="container mx-auto p-0 mt-5">
-     <section class="bg-white rounded mx-auto col-sm-10 p-0 shadow">
+     <section class="bg-white rounded mx-auto col-sm-10 p-0">
           <div class="d-flex flex-wrap p-3">
                @if (Items != null)
                {
                    foreach (ItemsResponseBody item in Items) {
-                        <div class="p-2 shadow rounded bg-white mr-4" style="width: 30%;">@item.itemName</div>
+                        <div class="p-2 shadow rounded mb-3 mr-4" style="width: 30%; border-radius: 10px; background-color: aliceblue;">@item.itemName</div>
                    }
+               } else {
+                    <h5>Loading.....!</h5>
                }
           </div>
+          @Body
      </section>
 </section>
 
