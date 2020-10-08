@@ -15,6 +15,7 @@
                     value="@loginUserName" @onchange="@((ChangeEventArgs e) => { loginUserName = e.Value.ToString(); checkUser(); })" 
                />               
                <small style="font-size: small; margin-left: 13%; color: red;">@(userStatusCode == 400 ? "User does not Exist" : "")</small>
+               <small>@(passwordloader ? "Loading...." : "")</small>
                @if (userStatusCode == 200) {
                     <input 
                          style="background-color: #f3f3f3" 
@@ -57,24 +58,19 @@
                     type="text" 
                     value="@SetPassword" @onchange="@((ChangeEventArgs e) => SetPassword = e.Value.ToString())" 
                />
-               <button class="border-0 px-5 d-flex mx-auto rounded shadow-sm py-2" style="background-color: bisque; font-size: small;">Submit</button>
+               <button class="border-0 px-5 d-flex mx-auto rounded shadow-sm py-2" style="background-color: bisque; font-size: small;" @onclick="signup">Submit</button>
                <p class="text-center mt-4" style="font-size: small;">Have an Account? <span style="color: salmon; cursor: pointer;" @onclick="updateUserExistence">Log In</span></p>
           }
      </section>
 </section>
 
 <p>@loginUserName</p>
-<h1>@text</h1>
-<div>
-     <Child @bind-Text="@text" />
-</div>
 
 @if (status != null) {
      nav.NavigateTo($"/home/{encode(status.username)}/");
 }
 
 @code {
-     public string text { get; set; }
      private string loginUserName { get; set; }
      private string loginpassword { get; set; }
      private string Username { get; set; }
@@ -86,6 +82,7 @@
      private bool loader { get; set; }
      private int userStatusCode { get; set; }
      private string errorMessage { get; set; }
+     private bool passwordloader;
 
      // ComponentOnMount
      protected override void OnInitialized() {
@@ -97,7 +94,7 @@
           ExistingUser = !ExistingUser;
      }
 
-     private async void triggerLogin() {          
+     private async void triggerLogin() {
           loader = true;          
           LoginRequestBody.username = loginUserName;
           LoginRequestBody.password = loginpassword;
@@ -116,11 +113,29 @@
      }
 
      public void checkUser() {
+          passwordloader = true;
           userStatusCode = Login.UserSearch(loginUserName);
+          passwordloader = false;
      }
 
      public string encode(string str) {
           byte[] bytes = Encoding.UTF8.GetBytes(str);
           return Convert.ToBase64String(bytes);
+     }
+
+     public void signup() {
+          int statuscode = Login.UserSearch(Username);
+          SignUpRequest.username = Username;
+          SignUpRequest.firstname = Firstname;
+          SignUpRequest.lastname = Lastname;
+          SignUpRequest.password = SetPassword;
+
+          if (statuscode == 400) {
+               if ((int) AuthoriseSignUp.signUser().StatusCode == 201) {
+                    ExistingUser = true;
+               } else {
+                    ExistingUser = false;
+               }
+          }
      }
 }

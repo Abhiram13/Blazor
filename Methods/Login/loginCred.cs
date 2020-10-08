@@ -20,7 +20,7 @@ namespace Authorise {
           public int __v { get; set; }
      }
 
-     class Login {
+     public class Login {
           private static HttpClient client = new HttpClient();
           private static HttpResponseMessage responseMessage;       
 
