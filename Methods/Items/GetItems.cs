@@ -22,9 +22,6 @@ namespace Item {
                HttpClient client = new HttpClient();
                string response = client.GetStringAsync("http://localhost:1995/getItems/").Result;
                List<ItemsResponseBody> list = JsonSerializer.Deserialize<List<ItemsResponseBody>>(response);
-               foreach (ItemsResponseBody item in list) {
-                    Console.WriteLine(item.itemName);
-               }
                return list.ToArray();
           }
      }

@@ -149,39 +149,6 @@
         }
       },
       {
-        "HashCode": -1987432864,
-        "Kind": "Components.Component",
-        "Name": "BlazorApp.Pages.Index",
-        "AssemblyName": "BlazorApp",
-        "CaseSensitive": true,
-        "TagMatchingRules": [
-          {
-            "TagName": "Index"
-          }
-        ],
-        "Metadata": {
-          "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "BlazorApp.Pages.Index"
-        }
-      },
-      {
-        "HashCode": 1112552857,
-        "Kind": "Components.Component",
-        "Name": "BlazorApp.Pages.Index",
-        "AssemblyName": "BlazorApp",
-        "CaseSensitive": true,
-        "TagMatchingRules": [
-          {
-            "TagName": "BlazorApp.Pages.Index"
-          }
-        ],
-        "Metadata": {
-          "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "BlazorApp.Pages.Index",
-          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
-        }
-      },
-      {
         "HashCode": 1860650891,
         "Kind": "Components.Component",
         "Name": "BlazorApp.Pages.Home",
@@ -290,6 +257,39 @@
           "Runtime.Name": "Components.None",
           "Common.TypeName": "BlazorApp.Pages.Home.Body",
           "Components.IsSpecialKind": "Components.ChildContent",
+          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
+        }
+      },
+      {
+        "HashCode": -1987432864,
+        "Kind": "Components.Component",
+        "Name": "BlazorApp.Pages.Index",
+        "AssemblyName": "BlazorApp",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "Index"
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "BlazorApp.Pages.Index"
+        }
+      },
+      {
+        "HashCode": 1112552857,
+        "Kind": "Components.Component",
+        "Name": "BlazorApp.Pages.Index",
+        "AssemblyName": "BlazorApp",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "BlazorApp.Pages.Index"
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "BlazorApp.Pages.Index",
           "Components.NameMatch": "Components.FullyQualifiedNameMatch"
         }
       },

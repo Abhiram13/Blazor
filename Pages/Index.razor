@@ -66,10 +66,6 @@
 
 <p>@loginUserName</p>
 
-@if (status != null) {
-     nav.NavigateTo($"/home/{encode(status.username)}/");
-}
-
 @code {
      private string loginUserName { get; set; }
      private string loginpassword { get; set; }
@@ -104,7 +100,9 @@
                errorMessage = "Please Enter Password";
                return;
           } else if (code == 200) {
-               status = await Login.logUser();               
+               status = await Login.logUser();
+               if (status != null)
+                    nav.NavigateTo($"/home/{encode(status.username)}/");         
                return;
           } else if (code == 401) {
                errorMessage = "Wrong Password";
