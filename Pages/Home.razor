@@ -1,6 +1,7 @@
+@page "/home/"
+@page "/home/{Id}"
 @inherits LayoutComponentBase;
 @layout MainLayout;
-@page "/home/{Id}"
 @using User;
 @using Authorise;
 @using System.Text;
@@ -30,12 +31,18 @@
      public LoginResponseBody ResponseBody { get; set; }
      public ItemsResponseBody[] Items { get; set; }
 
-     protected async override void OnParametersSet() {
-          string userId = Encoding.UTF8.GetString(Convert.FromBase64String(Id));
-          ResponseBody = await FindUser.getUser(userId);
-     }
-
      protected override void OnInitialized() {
+          if (Id == null) {
+               return;
+          }
           Items = GetItems.fetchItems();
      }
+
+     protected async override void OnParametersSet() {
+          if (Id == null) {
+               return;
+          }
+          string userId = Encoding.UTF8.GetString(Convert.FromBase64String(Id));
+          ResponseBody = await FindUser.getUser(userId);
+     }     
 }
