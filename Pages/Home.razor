@@ -4,11 +4,12 @@
 @using System.Text;
 @using Item;
 
+<input type="text" placeholder="Search" value="@value" @oninput="@((ChangeEventArgs e) => searchItem(e.Value.ToString(), ItemsCopy))" />
+
 <section class="container mx-auto p-0 mt-5">
      <section class="bg-white rounded mx-auto col-sm-10 p-0">
           <div class="d-flex flex-wrap p-3">
-               @if (Items != null)
-               {
+               @if (Items != null) {
                    foreach (ItemsResponseBody item in Items) {
                         <div class="p-2 shadow rounded mb-3 mr-4" style="width: 30%; border-radius: 10px; background-color: aliceblue;">
                              <img alt="@item.itemName" class="col-sm p-0 rounded" src="@item.imageURL" />
@@ -27,15 +28,17 @@
 {
      [Parameter]
      public string Id { get; set; }
-
      public LoginResponseBody ResponseBody { get; set; }
-     public ItemsResponseBody[] Items { get; set; }
+     protected ItemsResponseBody[] Items { get; set; }
+     public ItemsResponseBody[] ItemsCopy { get; set; }
+     public string value { get; set; }
 
      protected override void OnInitialized() {
           if (Id == null) {
                return;
           }
           Items = GetItems.fetchItems();
+          ItemsCopy = Items;
      }
 
      protected async override void OnParametersSet() {
@@ -45,4 +48,17 @@
           string userId = Encoding.UTF8.GetString(Convert.FromBase64String(Id));
           ResponseBody = await FindUser.getUser(userId);
      }     
+
+     public void searchItem(string key, ItemsResponseBody[] data) {
+          value = key;
+          System.Collections.Generic.List<ItemsResponseBody> list = new List<ItemsResponseBody>();
+
+          for (int i = 0; i < data.Length; i++) {
+               if (key.ToUpper() == data[i].itemName.Substring(0, key.Length).ToUpper()) {
+                    list.Add(data[i]);
+               }
+          }
+
+          Items = list.ToArray();
+     }
 }
