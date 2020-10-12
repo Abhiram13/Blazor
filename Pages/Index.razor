@@ -127,11 +127,7 @@
           SignUpRequest.password = SetPassword;
 
           if (statuscode == 400) {
-               if ((int) AuthoriseSignUp.signUser().StatusCode == 201) {
-                    ExistingUser = true;
-               } else {
-                    ExistingUser = false;
-               }
+               ExistingUser = (int)AuthoriseSignUp.signUser().StatusCode == 201 ? true : false;
           }
      }
 }
