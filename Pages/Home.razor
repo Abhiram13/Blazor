@@ -34,17 +34,12 @@
      public string value;
 
      protected override void OnInitialized() {
-          if (Id == null) {
-               return;
-          }
-          Items = GetItems.fetchItems();
-          ItemsCopy = Items;
+          if (Id == null) return;
+          Items = ItemsCopy = GetItems.fetchItems();
      }
 
      protected async override void OnParametersSet() {
-          if (Id == null) {
-               return;
-          }
+          if (Id == null) return;
           string userId = Encoding.UTF8.GetString(Convert.FromBase64String(Id));
           ResponseBody = await FindUser.getUser(userId);
      }     
@@ -59,9 +54,7 @@
                          if (key.Substring(1, key.Length - 1).ToUpper() == data[i].category.Substring(0, key.Length - 1).ToUpper()) {
                               list.Add(data[i]);
                          }
-                    } else {
-                         return;
-                    }                           
+                    } else return;                       
                } else if (key.ToUpper() == data[i].itemName.Substring(0, key.Length).ToUpper()) {
                     list.Add(data[i]);
                }
