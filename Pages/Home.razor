@@ -4,7 +4,7 @@
 @using System.Text;
 @using Item;
 
-<input type="text" placeholder="Search" value="@value" @oninput="@((ChangeEventArgs e) => searchItem(e.Value.ToString(), ItemsCopy))" />
+<input type="text" placeholder="Search" class="mx-auto d-block form-control col-sm-2 p-0 text-center" value="@value" @oninput="@((ChangeEventArgs e) => searchItem(e.Value.ToString(), ItemsCopy))" />
 
 <section class="container mx-auto p-0 mt-5">
      <section class="bg-white rounded mx-auto col-sm-10 p-0">
@@ -18,7 +18,7 @@
                         </div>
                    }
                } else {
-                    <h5>Loading.....!</h5>
+                    <h5>No Results Found</h5>
                }
           </div>
      </section>
@@ -53,12 +53,23 @@
           value = key;
           System.Collections.Generic.List<ItemsResponseBody> list = new List<ItemsResponseBody>();
 
+               // @fu  ///// 1, 2
+               // Fungus ///// 0, 2
+
           for (int i = 0; i < data.Length; i++) {
-               if (key.ToUpper() == data[i].itemName.Substring(0, key.Length).ToUpper()) {
+               if (key.StartsWith("@")) {         
+                    if (key.Length >= 2) {
+                         if (key.Substring(1, key.Length - 1).ToUpper() == data[i].category.Substring(0, key.Length - 1).ToUpper()) {
+                              list.Add(data[i]);
+                         }
+                    } else {
+                         return;
+                    }                           
+               } else if (key.ToUpper() == data[i].itemName.Substring(0, key.Length).ToUpper()) {
                     list.Add(data[i]);
                }
           }
 
-          Items = list.ToArray();
+          Items = list.Count > 0 ? list.ToArray() : null;
      }
 }
