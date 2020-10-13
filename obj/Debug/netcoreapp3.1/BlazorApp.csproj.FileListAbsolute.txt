@@ -109,3 +109,5 @@
 /Users/abhiramnagadi/Documents/Blazor/obj/Debug/netcoreapp3.1/Razor/Pages/List.razor.g.cs
 /Users/abhiramnagadi/Documents/Blazor/obj/Debug/netcoreapp3.1/RazorDeclaration/Pages/Details.razor.g.cs
 /Users/abhiramnagadi/Documents/Blazor/obj/Debug/netcoreapp3.1/Razor/Pages/Details.razor.g.cs
+/Users/abhiramnagadi/Documents/Blazor/obj/Debug/netcoreapp3.1/RazorDeclaration/Pages/AddForm.razor.g.cs
+/Users/abhiramnagadi/Documents/Blazor/obj/Debug/netcoreapp3.1/Razor/Pages/AddForm.razor.g.cs

@@ -7,6 +7,8 @@
 
 <input type="text" placeholder="Search" class="mx-auto d-block form-control col-sm-2 p-0 text-center" value="@value" @oninput="@((ChangeEventArgs e) => searchItem(e.Value.ToString(), ItemsCopy))" />
 
+<button class="btn btn-sm btn-info" @onclick="@(() => Nav.NavigateTo("/AddForm/"))">Add +</button>
+
 <section class="container mx-auto p-0 mt-5">
      <section class="bg-white rounded mx-auto col-sm-10 p-0">
           <div class="d-flex flex-wrap p-3">
