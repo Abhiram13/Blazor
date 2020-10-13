@@ -107,3 +107,5 @@
 /Users/abhiramnagadi/Documents/Blazor/bin/Debug/netcoreapp3.1/runtimes/win/native/snappy64.dll
 /Users/abhiramnagadi/Documents/Blazor/obj/Debug/netcoreapp3.1/RazorDeclaration/Pages/List.razor.g.cs
 /Users/abhiramnagadi/Documents/Blazor/obj/Debug/netcoreapp3.1/Razor/Pages/List.razor.g.cs
+/Users/abhiramnagadi/Documents/Blazor/obj/Debug/netcoreapp3.1/RazorDeclaration/Pages/Details.razor.g.cs
+/Users/abhiramnagadi/Documents/Blazor/obj/Debug/netcoreapp3.1/Razor/Pages/Details.razor.g.cs

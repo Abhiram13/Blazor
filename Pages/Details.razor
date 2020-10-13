@@ -1,0 +1,12 @@
+@page "/details/{U_id}/{I_id}/"
+
+<p>@U_id</p>
+<p>@I_id</p>
+
+@code {
+     [Parameter]
+     public string U_id { get; set; }
+
+     [Parameter]
+     public string I_id { get; set; }
+}

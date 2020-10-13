@@ -3,6 +3,7 @@
 @using Authorise;
 @using System.Text;
 @using Item;
+@inject NavigationManager Nav;
 
 <input type="text" placeholder="Search" class="mx-auto d-block form-control col-sm-2 p-0 text-center" value="@value" @oninput="@((ChangeEventArgs e) => searchItem(e.Value.ToString(), ItemsCopy))" />
 
@@ -13,7 +14,7 @@
                    foreach (ItemsResponseBody item in Items) {
                         <div class="p-2 shadow rounded mb-3 mr-4" style="width: 30%; border-radius: 10px; background-color: aliceblue;">
                              <img alt="@item.itemName" class="col-sm p-0 rounded" src="@item.imageURL" />
-                             <h6 class="m-0 mt-3">@item.itemName</h6>
+                             <h6 class="m-0 mt-3" @onclick="() => redirectToDetails(Id, item.itemName)" >@item.itemName</h6>
                              <small>@item.category</small>
                         </div>
                    }
@@ -61,5 +62,10 @@
           }
 
           Items = list.Count > 0 ? list.ToArray() : null;
+     }
+
+     public void redirectToDetails(string userid, string itemid) {
+          string itemId = Convert.ToBase64String(Encoding.UTF8.GetBytes(itemid));
+          Nav.NavigateTo($"/details/{userid}/{itemId}/");
      }
 }
