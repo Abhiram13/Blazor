@@ -5,7 +5,16 @@
 <p>@I_id</p>
 
 @if (Item != null) {
-     <h5>@Item.itemName</h5>
+     <div class="row mx-auto col-sm-7 p-0">
+          <div class="col-sm p-0">
+               <img src="@Item.imageURL" alt="@Item.itemName" width="300" height="400" />
+          </div>
+          <div class="col-sm p-0">
+               <h3>@Item.itemName</h3>
+               <p>@Item.category</p>
+               <p>@Item.description</p>
+          </div>
+     </div>
 }
 
 @code {
