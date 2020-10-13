@@ -1,7 +1,12 @@
-@page "/details/{U_id}/{I_id}/"
+@page "/details/{U_id}/{I_id}/";
+@using Item;
 
 <p>@U_id</p>
 <p>@I_id</p>
+
+@if (Item != null) {
+     <h5>@Item.itemName</h5>
+}
 
 @code {
      [Parameter]
@@ -9,4 +14,11 @@
 
      [Parameter]
      public string I_id { get; set; }
+
+     ItemsResponseBody Item;
+
+     protected async override void OnParametersSet() {
+          string itemId = System.Text.Encoding.UTF8.GetString(Convert.FromBase64String(I_id));
+          Item = await FindItem.findItem(itemId);
+     }
 }

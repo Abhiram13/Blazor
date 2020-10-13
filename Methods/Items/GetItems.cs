@@ -25,4 +25,16 @@ namespace Item {
                return list.ToArray();
           }
      }
+
+     public class FindItem {
+          public static async Task<ItemsResponseBody> findItem(string item) {
+               HttpClient client = new HttpClient();
+               string json = JsonSerializer.Serialize(new { itemName = item });
+               StringContent content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
+               HttpResponseMessage response = client.PostAsync("http://localhost:1995/Find/", content).Result;
+               string responseString = await response.Content.ReadAsStringAsync();
+               ItemsResponseBody Item = JsonSerializer.Deserialize<ItemsResponseBody>(responseString);
+               return Item;
+          }
+     }
 }
